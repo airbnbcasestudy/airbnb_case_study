@@ -1,49 +1,70 @@
 package vn.codegym.airbnb.config;
 
-
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import vn.codegym.airbnb.repository.Impl.PropertyRepoImpl;
+import vn.codegym.airbnb.repository.PropertyRepository;
+import vn.codegym.airbnb.service.Impl.PropertyServiceImpl;
+import vn.codegym.airbnb.service.PropertyService;
+
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
-@EnableWebSecurity
-public class ApplicationConfig extends WebSecurityConfigurerAdapter {
+@ComponentScan("vn.codegym.airbnb")
+public class ApplicationConfig {
+    @Autowired
+    private Environment env;
+
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+    public PropertyRepository propertyRepository(){
+        return new PropertyRepoImpl();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).
-                withUser("kai").password("$2a$04$Q2Cq0k57zf2Vs/n3JXwzmerql9RzElr.J7aQd3/Sq0fw/BdDFPAj.").roles("ADMIN");
-        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).
-                withUser("sena").password("$2a$04$Q2Cq0k57zf2Vs/n3JXwzmerql9RzElr.J7aQd3/Sq0fw/BdDFPAj.").roles("USER");
-//    auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("sena").password("123456").roles("USER");
+    @Bean
+    public PropertyService propertyService(){
+        return new PropertyServiceImpl();
     }
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // Chỉ cho phép user có quyền ADMIN truy cập đường dẫn /admin/**
-        http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
-        // Chỉ cho phép user có quyền ADMIN hoặc USER truy cập đường dẫn /user/**
-        http.authorizeRequests().antMatchers("/user/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
-        // Khi người dùng đã login, với vai trò USER, Nhưng truy cập vào trang yêu cầu vai trò ADMIN, sẽ chuyển hướng tới trang /403
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-        // Cấu hình cho Login Form.
-        http.authorizeRequests().and().formLogin()//
-                .loginProcessingUrl("/j_spring_security_login")//
-                .loginPage("/login")//
-                .defaultSuccessUrl("/user")//
-                .failureUrl("/login?message=error")//
-                .usernameParameter("username")//
-                .passwordParameter("password")
-                // Cấu hình cho Logout Page.
-                .and().logout().logoutUrl("/j_spring_security_logout").logoutSuccessUrl("/login?message=logout");
+
+    @Bean(name = "dataSource")
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
+        dataSource.setUrl(env.getProperty("spring.datasource.url"));
+        dataSource.setUsername(env.getProperty("spring.datasource.username"));
+        dataSource.setPassword(env.getProperty("spring.datasource.password"));
+        return dataSource;
+    }
+    @Autowired
+    @Bean(name = "sessionFactory")
+    public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
+        properties.put("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
+        properties.put("current_session_context_class", //
+                env.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
+        LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+        // Package contain entity classes
+        factoryBean.setPackagesToScan("vn.codegym.airbnb.model");
+        factoryBean.setDataSource(dataSource);
+        factoryBean.setHibernateProperties(properties);
+        factoryBean.afterPropertiesSet();
+        //
+        SessionFactory sf = factoryBean.getObject();
+        System.out.println("## getSessionFactory: " + sf);
+        return sf;
+    }
+    @Autowired
+    @Bean(name = "transactionManager")
+    public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+        return transactionManager;
     }
 }
