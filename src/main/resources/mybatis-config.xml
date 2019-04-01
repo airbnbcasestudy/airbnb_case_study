@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+        <typeAlias alias="Properties" type="vn.codegym.airbnb.model.Properties"/>
+        <typeAlias alias="PropertiesImg" type="vn.codegym.airbnb.model.PropertiesImg"/>
+        <typeAlias alias="Properties" type="vn.codegym.airbnb.model.Properties"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:1105/airbnb_db" />
+                <property name="username" value="root" />
+                <property name="password" value="vannhucuma" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="xmlmapper/PropertiesMapper.xml" />
+        <mapper resource="xmlmapper/PropertyImageDTOMapper.xml" />
+        <mapper resource="xmlmapper/PropertiesImgMapper.xml" />
+
+    </mappers>
+</configuration>

@@ -20,7 +20,7 @@ public class LoginController {
 
     @Autowired
     private RestFb restFb;
-    @RequestMapping(value = { "/", "/login" })
+    @RequestMapping(value = "/login")
     public String login() {
         return BASE_DIR + "/login";
     }
