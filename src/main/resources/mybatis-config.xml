@@ -13,9 +13,9 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:1105/airbnb_db" />
+                <property name="url" value="jdbc:mysql://localhost:3306/Airbnb_db" />
                 <property name="username" value="root" />
-                <property name="password" value="vannhucuma" />
+                <property name="password" value="tglvb1995" />
             </dataSource>
         </environment>
     </environments>
@@ -24,6 +24,7 @@
         <mapper resource="xmlmapper/PropertiesMapper.xml" />
         <mapper resource="xmlmapper/PropertyImageDTOMapper.xml" />
         <mapper resource="xmlmapper/PropertiesImgMapper.xml" />
+        <mapper resource="xmlmapper/UserMapper.xml" />
 
     </mappers>
 </configuration>

@@ -17,8 +17,12 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
+
 import javax.sql.DataSource;
 import java.util.Properties;
+
+
+
 
 @Configuration
 @ComponentScan("vn.codegym.airbnb")
@@ -40,6 +44,7 @@ public class ApplicationConfig implements WebMvcConfigurer, ApplicationContextAw
         dataSource.setPassword(env.getProperty("spring.datasource.password"));
         return dataSource;
     }
+
 
     @Autowired
     @Bean(name = "sessionFactory")
