@@ -15,7 +15,7 @@
 
     <resultMap id="propertiesImgMap" type="PropertiesImg">
         <result property="id" column="id"/>
-        <re
+
     </resultMap>
 
 </mapper>

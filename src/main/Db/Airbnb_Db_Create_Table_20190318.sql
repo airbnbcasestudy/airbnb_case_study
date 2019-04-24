@@ -1,63 +1,44 @@
 USE airbnb_db;
 
-CREATE TABLE users(
-	id int auto_increment primary key,
-    first_name varchar(255) NOT NULL,
-    last_name varchar(255) NOT NULL,
-    email varchar(255),
-    password text,
-    date_of_birth date,
-    facebook_id varchar(255),
-    status tinyint(2) NOT NULL
-);
+USE airbnb_db;
 
 
-CREATE TABLE house_type(
-	id int auto_increment primary key,
-    name varchar(255) NOT NULL,
-    created datetime NOT NULL,
-    modified datetime NOT NULL,
-    status tinyint(2) NOT NULL
-);
+CREATE TABLE `properties` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8_unicode_ci,
+  `user_id` int(11) DEFAULT NULL,
+  `house_type` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8_unicode_ci,
+  `bedrooms` int(11) DEFAULT NULL,
+  `bathrooms` int(11) DEFAULT NULL,
+  `price` decimal(10,0) DEFAULT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '1',
+  `image_default` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE room_type(
-	id int auto_increment primary key,
-    name varchar(255) NOT NULL,
-	created datetime NOT NULL,
-    modified datetime NOT NULL,
-    status tinyint(2) NOT NULL
-);
 
-CREATE TABLE province(
-	id int auto_increment primary key,
-    name varchar(255) NOT NULL,
-    code varchar(255) NOT NULL,
-    status tinyint(2) NOT NULL
-);
+CREATE TABLE `property_img` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `property_id` int(11) NOT NULL,
+  `image_path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE county(
-	id int auto_increment primary key,
-    province_id int NOT NULL,
-    name varchar(255) NOT NULL,
-    code varchar(255) NOT NULL,
-    status tinyint(2) NOT NULL
-);
 
-CREATE TABLE properties(
-	id int auto_increment primary key,
-    name varchar(255),
-    description text NOT NULL,
-	user_id int NOT NULL,
-    house_type_id int NOT NULL,
-    room_type_id int NOT NULL, 
-    province_id int NOT NULL,
-    country_id int NOT NULL, 
-    address text NOT NULL,
-    bedroom_count int NOT NULL,
-    bathroom_count int NOT NULL,
-    price decimal(10),
-    status tinyint(2) NOT NULL
-);
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` text COLLATE utf8_unicode_ci,
+  `date_of_birth` date DEFAULT NULL,
+  `facebook_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` tinyint(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 CREATE TABLE booking(
 	id int auto_increment primary key,
@@ -85,11 +66,6 @@ CREATE TABLE transactions(
     status tinyint(2) NOT NULL
 );
 
-CREATE TABLE property_img(
-	id int auto_increment primary key,
-    property_id int NOT NULL,
-    image_path varchar(255) NOT NULL
-);
 
 CREATE TABLE reviews(
 	id int auto_increment primary key,
@@ -102,5 +78,4 @@ CREATE TABLE reviews(
     status tinyint(2) NOT NULL
 );
 
-select p.*, pi.* from properties p join property_img pi on p.id = pi.property_id where p.id = 1
 
