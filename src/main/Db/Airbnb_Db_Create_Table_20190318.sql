@@ -11,6 +11,7 @@ CREATE TABLE users(
     status tinyint(2) NOT NULL
 );
 
+
 CREATE TABLE house_type(
 	id int auto_increment primary key,
     name varchar(255) NOT NULL,
