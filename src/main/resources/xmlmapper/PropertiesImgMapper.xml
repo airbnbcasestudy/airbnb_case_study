@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vn.codegym.airbnb.mapper.PropertiesImgMapper">
 
-    <select id="findById" resultType="PropertiesImg" parameterType="int">
+    <select id="findByPropertiesId" resultType="PropertiesImg" parameterType="int">
         select pi.* from property_img pi where property_id = #{id};
     </select>
 

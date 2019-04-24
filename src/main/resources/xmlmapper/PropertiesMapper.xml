@@ -8,7 +8,7 @@
         select p.* from properties p limit #{limit};
     </select>
 
-    <select id="findById" resultType="Properties" parameterType="int">
+    <select id="findById" resultMap="propertiesMap" parameterType="int">
         select p.* from properties p where p.id = #{id};
     </select>
 

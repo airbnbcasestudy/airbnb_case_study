@@ -65,13 +65,13 @@ public class APIController {
     }
 
 
-    @RequestMapping("/rooms/detail/{id}")
-    public List<PropertyImageDTO> detailProperty(@PathVariable("id") int id){
-//        PropertyImageDTO propertyImageDTO = propertyImageDTOMapper.findById(id);
-        List<PropertyImageDTO> propertyImageDTO = propertyImageDTOMapper.findByIdPropertyImg(id);
-//        Properties properties = propertiesMapper.findById(id);
-        return propertyImageDTO;
-    }
+//    @RequestMapping("/rooms/detail/{id}")
+//    public List<PropertyImageDTO> detailProperty(@PathVariable("id") int id){
+////        PropertyImageDTO propertyImageDTO = propertyImageDTOMapper.findById(id);
+//        List<PropertyImageDTO> propertyImageDTO = propertyImageDTOMapper.findByIdPropertyImg(id);
+////        Properties properties = propertiesMapper.findById(id);
+//        return propertyImageDTO;
+//    }
 
     private static String UPLOAD_DIR = "E:/CodeGym Viet Nam/Spring MVC Project/airbnb_case_study_springboot/src/main/resources/static/image";
 

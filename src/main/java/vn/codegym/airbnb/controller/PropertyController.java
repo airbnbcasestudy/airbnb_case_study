@@ -3,10 +3,7 @@ package vn.codegym.airbnb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import vn.codegym.airbnb.common.RestFb;
 import vn.codegym.airbnb.dto.PropertyImageDTO;
@@ -47,13 +44,14 @@ public class PropertyController {
 
 
 
-//    @RequestMapping("/rooms/detail/{id}")
-//    public String detailProperty(@PathVariable("id") int id, Model model){
-//        Properties properties = propertiesMapper.findById(id);
-//       // List<PropertiesImg> propertiesImgList = propertiesImgMapper.findById(id);
-//        model.addAttribute("properties", properties);
-//        return "/rooms/detail";
-//    }
+    @RequestMapping(value = "/rooms/detail/{id}", method = RequestMethod.GET)
+    public String detailProperty(@PathVariable("id") int id, Model model){
+        Properties properties = propertiesMapper.findById(id);
+        List<PropertiesImg> propertiesImgList = propertiesImgMapper.findByPropertiesId(id);
+        model.addAttribute("properties", properties);
+        model.addAttribute("propertiesImg", propertiesImgList);
+        return "rooms/detail";
+    }
 
 //    @RequestMapping("/rooms/create")
 //    @ResponseBody

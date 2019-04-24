@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>jQuery Validation - ThienAnBlog.com</title>    
+    <style type="text/css">
+    /* label {
+        display: inline-block;
+        width: 150px;
+    }
+    input[type="text"], input[type="password"] {
+        display: inline-block;
+        width: 200px;
+    }
+    label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+    } */
+    </style>
+    <!-- Load Thư viện jQuery vào trước khi load jQuery Validate-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+</head>
+<body>
+    <form  id="formDemo">
+        <fieldset>
+            <legend>Demo jQuery Validate - ThienAnBlog.com</legend>
+            <div>
+                <label>Họ</label>
+                <input name="hot" id="ho" type="text" placeholder="Vui lòng nhập họ" required>
+            </div>
+            <div>
+                <label>Tên</label>
+                <input name="ten" type="text" placeholder="Vui lòng nhập tên" required>
+            </div>
+            <div>
+                <label>Địa chỉ</label>
+                <input name="diachi" id="file" type="file" multiple accept="image/*" >
+            </div>
+            <button type="submit">Gửi</button>
+        </fieldset>
+    </form>
+
+    <button id="btn-send" type="submit">Gửi</button>
+    <script type="text/javascript">
+ 
+    // $(document).ready(function() {
+ 
+    //     //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+    //     $("#formDemo").validate({
+    //         rules: {
+    //             ho: 'required',
+    //             ten: 'required',
+    //             diachi: {
+    //                 required: true,
+    //                 minlength: 2
+    //             }
+    //         },
+    //         messages: {
+    //             ho: "Vui lòng nhập họ",
+    //             ten: "Vui lòng nhập tên",
+    //             diachi: {
+    //                 required: "Vui lòng nhập địa chỉ",
+    //                 minlength: "Địa chỉ ngắn vậy, chém gió ah?"
+    //             }
+    //         }
+    //     });
+    // });
+</body>
+</html>

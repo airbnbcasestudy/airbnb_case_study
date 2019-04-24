@@ -33,7 +33,7 @@ function loadProperties(limit){
                     html += '<div class="grib-home">';
                     html += '<div class="img-content">';
                     html += '<a href="/rooms/detail/';
-                    html += item['propertyId'];
+                    html += item['id'];
                     html += '">';
                     html += '<img class="img-fluid img-thumbnail" src="';
                     html += item['imageDefault'];
