@@ -12,19 +12,34 @@ public class Properties {
     private int id;
     private String name;
     private String description;
-    private int user_id;
-    private int house_type_id;
-    private int room_type_id;
-    private int province_id;
-    private int country_id;
+    private int userId;
+    private String houseType;
     private String address;
-    private int bedroom_count;
-    private int bathroom_count;
+    private int bedRooms;
+    private int bathRooms;
     private double price;
     private boolean status;
-
+    private String imageDefault;
 
     public Properties() {
+    }
+
+    public Properties(int userId, String imageDefault) {
+        this.userId = userId;
+        this.imageDefault = imageDefault;
+    }
+
+    public Properties(String name, String description, int userId, String houseType, String address, int bedRooms, int bathRooms, double price, boolean status, String imageDefault) {
+        this.name = name;
+        this.description = description;
+        this.userId = userId;
+        this.houseType = houseType;
+        this.address = address;
+        this.bedRooms = bedRooms;
+        this.bathRooms = bathRooms;
+        this.price = price;
+        this.status = status;
+        this.imageDefault = imageDefault;
     }
 
     public int getId() {
@@ -51,44 +66,20 @@ public class Properties {
         this.description = description;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getHouse_type_id() {
-        return house_type_id;
+    public String getHouseType() {
+        return houseType;
     }
 
-    public void setHouse_type_id(int house_type_id) {
-        this.house_type_id = house_type_id;
-    }
-
-    public int getRoom_type_id() {
-        return room_type_id;
-    }
-
-    public void setRoom_type_id(int room_type_id) {
-        this.room_type_id = room_type_id;
-    }
-
-    public int getProvince_id() {
-        return province_id;
-    }
-
-    public void setProvince_id(int province_id) {
-        this.province_id = province_id;
-    }
-
-    public int getCountry_id() {
-        return country_id;
-    }
-
-    public void setCountry_id(int country_id) {
-        this.country_id = country_id;
+    public void setHouseType(String houseType) {
+        this.houseType = houseType;
     }
 
     public String getAddress() {
@@ -99,20 +90,20 @@ public class Properties {
         this.address = address;
     }
 
-    public int getBedroom_count() {
-        return bedroom_count;
+    public int getBedRooms() {
+        return bedRooms;
     }
 
-    public void setBedroom_count(int bedroom_count) {
-        this.bedroom_count = bedroom_count;
+    public void setBedRooms(int bedRooms) {
+        this.bedRooms = bedRooms;
     }
 
-    public int getBathroom_count() {
-        return bathroom_count;
+    public int getBathRooms() {
+        return bathRooms;
     }
 
-    public void setBathroom_count(int bathroom_count) {
-        this.bathroom_count = bathroom_count;
+    public void setBathRooms(int bathRooms) {
+        this.bathRooms = bathRooms;
     }
 
     public double getPrice() {
@@ -131,4 +122,11 @@ public class Properties {
         this.status = status;
     }
 
+    public String getImageDefault() {
+        return imageDefault;
+    }
+
+    public void setImageDefault(String imageDefault) {
+        this.imageDefault = imageDefault;
+    }
 }

@@ -1,18 +1,16 @@
 package vn.codegym.airbnb.model;
 
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "property_img")
 public class PropertiesImg {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    private int propertyId;
     private String imagePath;
 
     public PropertiesImg() {
+    }
+
+    public PropertiesImg(int propertyId, String imagePath) {
+        this.propertyId = propertyId;
+        this.imagePath = imagePath;
     }
 
     public int getId() {
@@ -21,6 +19,14 @@ public class PropertiesImg {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(int propertyId) {
+        this.propertyId = propertyId;
     }
 
     public String getImagePath() {

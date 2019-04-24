@@ -9,5 +9,13 @@ import java.util.List;
 
 @Mapper
 public interface PropertiesMapper {
+    List<Properties> selectPaging(int limit);
+
     Properties findById(int id);
+
+    void insert(Properties properties);
+
+    Properties findByMaxId();
+
+    void updateImagePath(Properties properties);
 }

@@ -5,13 +5,10 @@ public class PropertyImageDTO {
     private String name;
     private String description;
     private int userId;
-    private int houseTypeId;
-    private int roomTypeId;
-    private int provinceId;
-    private int countryId;
+    private String houseType;
     private String address;
-    private int bedroomCount;
-    private int bathroomCount;
+    private int bedRooms;
+    private int bathRooms;
     private double price;
     private boolean status;
     private int propertyImageId;
@@ -19,24 +16,6 @@ public class PropertyImageDTO {
 
     public PropertyImageDTO() {
 
-    }
-
-    public PropertyImageDTO(int propertyId, String name, String description, int userId, int houseTypeId, int roomTypeId, int provinceId, int countryId, String address, int bedroomCount, int bathroomCount, double price, boolean status, int propertyImageId, String imagePath) {
-        this.propertyId = propertyId;
-        this.name = name;
-        this.description = description;
-        this.userId = userId;
-        this.houseTypeId = houseTypeId;
-        this.roomTypeId = roomTypeId;
-        this.provinceId = provinceId;
-        this.countryId = countryId;
-        this.address = address;
-        this.bedroomCount = bedroomCount;
-        this.bathroomCount = bathroomCount;
-        this.price = price;
-        this.status = status;
-        this.propertyImageId = propertyImageId;
-        this.imagePath = imagePath;
     }
 
     public int getPropertyId() {
@@ -71,36 +50,12 @@ public class PropertyImageDTO {
         this.userId = userId;
     }
 
-    public int getHouseTypeId() {
-        return houseTypeId;
+    public String getHouseType() {
+        return houseType;
     }
 
-    public void setHouseTypeId(int houseTypeId) {
-        this.houseTypeId = houseTypeId;
-    }
-
-    public int getRoomTypeId() {
-        return roomTypeId;
-    }
-
-    public void setRoomTypeId(int roomTypeId) {
-        this.roomTypeId = roomTypeId;
-    }
-
-    public int getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(int provinceId) {
-        this.provinceId = provinceId;
-    }
-
-    public int getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
+    public void setHouseType(String houseType) {
+        this.houseType = houseType;
     }
 
     public String getAddress() {
@@ -111,20 +66,20 @@ public class PropertyImageDTO {
         this.address = address;
     }
 
-    public int getBedroomCount() {
-        return bedroomCount;
+    public int getBedRooms() {
+        return bedRooms;
     }
 
-    public void setBedroomCount(int bedroomCount) {
-        this.bedroomCount = bedroomCount;
+    public void setBedRooms(int bedRooms) {
+        this.bedRooms = bedRooms;
     }
 
-    public int getBathroomCount() {
-        return bathroomCount;
+    public int getBathRooms() {
+        return bathRooms;
     }
 
-    public void setBathroomCount(int bathroomCount) {
-        this.bathroomCount = bathroomCount;
+    public void setBathRooms(int bathRooms) {
+        this.bathRooms = bathRooms;
     }
 
     public double getPrice() {

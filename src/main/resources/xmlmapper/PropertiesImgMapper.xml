@@ -8,4 +8,8 @@
         select pi.* from property_img pi where property_id = #{id};
     </select>
 
+    <insert id="insert" parameterType="PropertiesImg">
+        insert into property_img(property_id, image_path) values (#{propertyId}, #{imagePath});
+    </insert>
+
 </mapper>

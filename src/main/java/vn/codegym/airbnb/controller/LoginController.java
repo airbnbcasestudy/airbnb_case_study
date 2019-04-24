@@ -1,56 +1,71 @@
 package vn.codegym.airbnb.controller;
 
 
-import org.apache.http.client.ClientProtocolException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import vn.codegym.airbnb.common.RestFb;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import vn.codegym.airbnb.dto.UserDTO;
+import vn.codegym.airbnb.mapper.UserMapper;
+import vn.codegym.airbnb.model.User;
+
 
 @Controller
+@SessionAttributes("myUser")
 public class LoginController {
+    @Autowired
+    public UserMapper userMapper;
+
+    @ModelAttribute("myUser")
+    private User myUser(){
+        return new User();
+    }
+
     private static final String BASE_DIR = "/login";
 
-    @Autowired
-    private RestFb restFb;
-    @RequestMapping(value = "/login")
-    public String login() {
-        return BASE_DIR + "/login";
-    }
-    @RequestMapping("/login-facebook")
-    public String loginFacebook(HttpServletRequest request) throws ClientProtocolException, IOException {
-        String code = request.getParameter("code");
+//    @RequestMapping(value = "/login/signin")
+//    public String loginWithUser(@ModelAttribute("userDTO") UserDTO myUser, Model model){
+//        String email = myUser.getEmail();
+//        String password = myUser.getPassword();
+//
+//        User user = userMapper.findByEmail(email);
+//        if(user != null && password.equals(user.getPassword())){
+//            return "redirect:/";
+//        }else {
+//            model.addAttribute("message", "Not Email");
+//            return "/";
+//        }
+//    }
 
-        if (code == null || code.isEmpty()) {
-            return "redirect:/login?facebook=error";
-        }
-        String accessToken = restFb.getToken(code);
+//    @Autowired
+//    private RestFb restFb;
+//
+//    @RequestMapping(value = "/login")
+//    public String login() {
+//        return BASE_DIR + "/login";
+//    }
 
-        com.restfb.types.User user = restFb.getUserInfo(accessToken);
-        UserDetails userDetail = restFb.buildUser(user);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-                userDetail.getAuthorities());
-        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "redirect:/user";
-    }
-    @RequestMapping("/user")
-    public String user() {
-        return BASE_DIR + "/user";
-    }
-    @RequestMapping("/admin")
-    public String admin() {
-        return BASE_DIR + "/admin";
-    }
-    @RequestMapping("/403")
-    public String accessDenied() {
-        return "/error/403";
-    }
+//    @RequestMapping("/login-facebook")
+//    public String loginFacebook(HttpServletRequest request) throws ClientProtocolException, IOException {
+//        String code = request.getParameter("code");
+//
+//        if (code == null || code.isEmpty()) {
+//            return "redirect:/login?facebook=error";
+//        }
+//        String accessToken = restFb.getToken(code);
+//
+//        com.restfb.types.User user = restFb.getUserInfo(accessToken);
+//        UserDetails userDetail = restFb.buildUser(user);
+//        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+//                userDetail.getAuthorities());
+//        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        return "redirect:/home";
+//    }
+
+
 }

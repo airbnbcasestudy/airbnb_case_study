@@ -5,7 +5,8 @@
     <typeAliases>
         <typeAlias alias="Properties" type="vn.codegym.airbnb.model.Properties"/>
         <typeAlias alias="PropertiesImg" type="vn.codegym.airbnb.model.PropertiesImg"/>
-        <typeAlias alias="Properties" type="vn.codegym.airbnb.model.Properties"/>
+        <typeAlias alias="User" type="vn.codegym.airbnb.model.User"/>
+
     </typeAliases>
 
     <environments default="development">
@@ -24,6 +25,6 @@
         <mapper resource="xmlmapper/PropertiesMapper.xml" />
         <mapper resource="xmlmapper/PropertyImageDTOMapper.xml" />
         <mapper resource="xmlmapper/PropertiesImgMapper.xml" />
-
+        <mapper resource="xmlmapper/UserMapper.xml" />
     </mappers>
 </configuration>

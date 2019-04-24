@@ -10,5 +10,5 @@ import java.util.List;
 public interface PropertyImageDTOMapper {
     List<PropertyImageDTO> selectAll();
 
-    PropertyImageDTO findById(int id);
+    List<PropertyImageDTO> findByIdPropertyImg(int id);
 }

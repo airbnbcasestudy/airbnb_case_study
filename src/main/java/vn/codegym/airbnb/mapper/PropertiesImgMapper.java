@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface PropertiesImgMapper {
     List<PropertiesImg> findById(int id);
+
+    void insert(PropertiesImg propertiesImg);
 }
