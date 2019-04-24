@@ -12,4 +12,10 @@
         insert into property_img(property_id, image_path) values (#{propertyId}, #{imagePath});
     </insert>
 
+
+    <resultMap id="propertiesImgMap" type="PropertiesImg">
+        <result property="id" column="id"/>
+        <re
+    </resultMap>
+
 </mapper>
