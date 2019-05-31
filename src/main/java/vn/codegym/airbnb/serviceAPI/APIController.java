@@ -9,17 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import vn.codegym.airbnb.controller.UploadForm;
+import vn.codegym.airbnb.dto.BookingDTO;
 import vn.codegym.airbnb.dto.PropertyImageDTO;
 import vn.codegym.airbnb.dto.UserDTO;
 import vn.codegym.airbnb.form.PropertiesForm;
-import vn.codegym.airbnb.mapper.PropertiesImgMapper;
-import vn.codegym.airbnb.mapper.PropertiesMapper;
-import vn.codegym.airbnb.mapper.PropertyImageDTOMapper;
-import vn.codegym.airbnb.mapper.UserMapper;
-import vn.codegym.airbnb.model.Limit;
-import vn.codegym.airbnb.model.Properties;
-import vn.codegym.airbnb.model.PropertiesImg;
-import vn.codegym.airbnb.model.User;
+import vn.codegym.airbnb.mapper.*;
+import vn.codegym.airbnb.model.*;
 
 
 import javax.print.attribute.standard.Media;
@@ -31,6 +26,9 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @RestController
@@ -42,6 +40,8 @@ public class APIController {
     private PropertiesMapper propertiesMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private BookingMapper bookingMapper;
 
     private PropertyImageDTOMapper propertyImageDTOMapper;
 
@@ -56,6 +56,18 @@ public class APIController {
         return verifyUser;
     }
 
+    @RequestMapping(value = "/booking", method = RequestMethod.POST)
+    public void bookingRoom(@RequestBody BookingDTO bk){
+        LocalDate cancelDate = bk.getCheckOut();
+        Period period = Period.between(bk.getCheckIn(), bk.getCheckOut());
+        int days = period.getDays();
+
+
+        Booking booking = new Booking(bk.getPropertiesId(), bk.getUserId(), bk.getCheckIn(),
+                bk.getCheckOut(), cancelDate.plusDays(-1), LocalDate.now(), days*bk.getAmountPaid());
+        bookingMapper.insert(booking);
+    }
+
 
     @RequestMapping(value = "/properties", method = RequestMethod.GET)
     public @ResponseBody List<Properties> propertyImageDTOList(HttpServletRequest request){
@@ -65,15 +77,7 @@ public class APIController {
     }
 
 
-//    @RequestMapping("/rooms/detail/{id}")
-//    public List<PropertyImageDTO> detailProperty(@PathVariable("id") int id){
-////        PropertyImageDTO propertyImageDTO = propertyImageDTOMapper.findById(id);
-//        List<PropertyImageDTO> propertyImageDTO = propertyImageDTOMapper.findByIdPropertyImg(id);
-////        Properties properties = propertiesMapper.findById(id);
-//        return propertyImageDTO;
-//    }
-
-    private static String UPLOAD_DIR = "E:/CodeGym Viet Nam/Spring MVC Project/airbnb_case_study_springboot/src/main/resources/static/image";
+    private static String UPLOAD_DIR = "E:/CodeGym Viet Nam/Spring MVC Project/airbnb_case_study_springboot/upload/";
 
     @PostMapping("/rooms/upload")
     public ResponseEntity<?> multiUploadFileModel(@ModelAttribute PropertiesForm prf) {
@@ -98,7 +102,7 @@ public class APIController {
                     continue;
                 }
                 String uploadFilePath = UPLOAD_DIR + "/" + file.getOriginalFilename();
-                pathImage[index] = "/resources/image/" + file.getOriginalFilename();
+                pathImage[index] = "/upload/" + file.getOriginalFilename();
                 PropertiesImg propertiesImg = new PropertiesImg(id, pathImage[index]);
                 propertiesImgMapper.insert(propertiesImg);
                 index++;

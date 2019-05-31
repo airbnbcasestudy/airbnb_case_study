@@ -13,8 +13,8 @@
     </select>
 
     <insert id="insert" parameterType="Properties">
-        insert into properties(name, description, user_id, house_type, address, bedrooms, bathrooms, price, status)
-          values(#{name}, #{description}, #{userId}, #{houseType}, #{address}, #{bedRooms}, #{bathRooms}, #{price}, #{status} );
+        insert into properties(name, description, user_id, house_type, address, bedrooms, bathrooms, price, status, image_default)
+          values(#{name}, #{description}, #{userId}, #{houseType}, #{address}, #{bedRooms}, #{bathRooms}, #{price}, #{status}, #{imageDefault} );
     </insert>
 
     <select id="findByMaxId" resultType="Properties">

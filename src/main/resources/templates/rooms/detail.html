@@ -10,6 +10,7 @@
         th:href="@{/resources/css/bootstrap.min.css}">
     <link rel="stylesheet" href="../../static/css/detailstyle.css" 
         th:href="@{/resources/css/detailstyle.css}">
+    <link rel="stylesheet" href="../static/css/mystyle.css" th:href="@{/resources/css/mystyle.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
@@ -38,22 +39,20 @@
                             <button id="btn-user" type="button"></buttons>
                                 <button id="btn-logout" type="button"></buttons>
                     </nav>
+                    <div class="user-menu">
+                        <ul>
+                            <li id="for-lease">Houses for lease</li>
+                            <li></li>
+                            <li>Profile</li>
+                        </ul>
+                    </div>
                 </div>
 
-
-                <div id="carousel-image-view" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <div id="carousel-image-view" class="carousel slide" 
+                    data-ride="carousel" data-interval="3000" style="margin-top: 50px">
                     <div class="carousel-inner">
-                        <div class="carousel-item ">
-                            <img src="../../static/image/img3.jpg" th:src="@{/resources/image/img3.jpg}"
-                                alt="First Slide">
-                        </div>
-                        <div class="carousel-item ">
-                            <img src="../../static/image/img2.jpg" th:src="@{/resources/image/img2.jpg}"
-                                alt="Second Slide">
-                        </div>
-                        <div class="carousel-item active">
-                            <img src="../../static/image/img4.jpg" th:src="@{/resources/image/img4.jpg}"
-                                alt="Third Slide">
+                        <div class="carousel-item" th:classappend="${iter.index} == 0 ? active : carousel-item" th:each="pr, iter: ${propertiesImgs}" >
+                            <img th:src="${pr.imagePath}">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-image-view" role="button" data-slide="prev">
@@ -70,15 +69,16 @@
             <div class="content-detail container">
                 <div class="detail-info">
                     <div class="general-info">
-                        <h3>Home Name</h3>
+                        <h3 th:text="${properties.name}">Home Name</h3>
+                        <h3 th:text="${properties.id}" hidden id="properties-id"></h3>
                         <div class="convenient">
                             <i class="fas fa-home"></i>
-                            <span th:utext="ppp">Home type</span>
+                            <span th:text="${properties.houseType}">Home type</span>
                         </div>
                         <div>
-                            <span>1</span>
+                            <span th:utext="${properties.bedRooms}">1</span>
                             <i class="fas fa-bed"></i>
-                            <span>1</span>
+                            <span th:utext="${properties.bathRooms}">1</span>
                             <i class="fas fa-bath"></i>
                         </div>
 
@@ -90,67 +90,14 @@
 
                     <div class="description">
                         <h4>Description</h4>
-                        <p id="description-body">
+                        <div id="description-body" th:text="${properties.description}">
                             Our house located right in Hanoi city which is a historical Old Quarters where our family
                             lived since {20th} century fusions with 3 generation together until today.
                             The room is newly built on top floor with a private balcony for chill with splendid view of
                             old Hanoi and faces down to a garden we spend time look after it everyday. We provide a
                             comfortable homestay that bring the unique features as local experience at our place with
                             irresistible price.
-
-                            The space
-
-                            We are one of the only few house in Old quarter that still keeps the Hanoi traditional house
-                            style , inside a small alley but with many open out door area in house where you find green
-                            & sunlight
-                            You have a big room 35m2, balcony face to a small garden , King size comfy bed and large
-                            private bathroom
-                            The room located in 4th floor of the house, 1 full level, so you will have your privacy
-
-                            You can check out our others listings in French quarter
-                            https://www.airbnb.com/rooms/33049631
-                            https://www.airbnb.com/rooms/33050876
-
-                            Guest access
-
-                            You have your own room with Ensuite bath room on top floor so there will be view from your
-                            front door and back balcony
-
-                            We have 1 couch for extra person staying
-                            Good wifi connection , aircon, TV, hot/cold shower (private bathroom inside your room) and a
-                            refrigerator in your room
-
-                            Interaction with guests
-
-                            Host will be home when you check in and anytime when you need assistance
-                            Working in Travel industry for almost 8 years, I can help to arrange your trip with best
-                            deal and high quality , most of the tour will pick you up front our our door
-
-                            Other things to note
-
-                            Airport transfer to our doorstep:
-
-                            For your convenience and to avoid unnecessary loss of time, I will help you arrange an
-                            airport transfer. The driver will arrive punctually at the arrival terminal and hold a
-                            welcome board bearing your name; he will then drive you directly to my house. The cost will
-                            be the same as the market price - $16 for one way
-
-                            With my day job as a tour consultant, i am very proud to say that i can give the best advise
-                            for your travels to Northern Vietnam and relieve you of all the stress booking and planning
-                            a holiday (:I can help you with booking of good quality tours / trains / bus /
-                            accommodations to other places such as Sapa, Ha Long, Cat Ba, Ba Be, Hoa Lu, Tam Coc etc or
-                            other parts of Northern Vietnam with competitive price and service guarantee.Iam happy to
-                            discuss all budgets and travel options. The most important thing for me is that i provide
-                            you with honest information to make your trip as amazing as possible. Please check with me
-                            for more information about tour packages (:
-
-                            A bubbly team of students who are always looking to interact with foreigners and indulge in
-                            cultural and language exchange.! Please inform me in advance if interested so I can check
-                            their available.
-
-                            If you have an early arrive or late check out, we can arrange place for you to keep your
-                            luggage if the room is not available for early check in or late check out
-                        </p>
+                        </div>
                         <button type="button" id="btn-read-more">Read more about>></button>
                     </div>
                 </div>
@@ -158,15 +105,15 @@
                 <div class="booking">
                     <div class="booking-content">
                         <div class="header-booking">
-                            <h4><span>$14</span> per night</h4>
-                            <form>
+                            <h4><span th:text="${properties.price}" id="price"></span> per night</h4>
+                            <form id="form-booking">
                                 <div class="form-group">
                                     <label for="checkin-booking"> Check-in</label>
-                                    <input type="date" id="checkin-booking" class="form-control">
+                                    <input name="checkIn" type="date" id="checkin-booking" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="checkout-booking"> Check-out</label>
-                                    <input type="date" id="checkout-booking" class="form-control">
+                                    <input name="checkOut" type="date" id="checkout-booking" class="form-control">
                                 </div>
 
                                 <button class="btn btn-primary" type="button" id="btn-booking">BOOK</button>
@@ -175,7 +122,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Modal Sign In -->
             <div class="modal fade" id="modal-login" role="dialog" tabindex="-1" aria-labelledby="modalLoginLable">
                 <div class="modal-dialog" role="document">
@@ -304,9 +250,10 @@
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script language="javascript" th:src="@{/resources/js/jquery-3.3.1.min.js}"></script>
-    <script language="javascript" src="../../static/js/jquery-3.3.1.min.js"></script>
-    <script language="javascript" src="../../static/js/properties.js"></script>
-    <script language="javascript" src="../../static/js/detail.js"></script>
+    <!-- <script language="javascript" src="../../static/js/jquery-3.3.1.min.js"></script> -->
+    <!-- <script language="javascript" src="../../static/js/properties.js"></script> -->
+    <!-- <script language="javascript" src="../../static/js/detail.js"></script> -->
+    <script language="javascript" th:src="@{/resources/js/detail.js}"></script>
     <script language="javascript" th:src="@{/resources/js/properties.js}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

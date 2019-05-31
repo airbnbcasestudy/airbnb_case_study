@@ -32,7 +32,7 @@ html body{
     position: relative ;
     width: 100% ;
     height: auto;
-    border: thick solid red;
+    /* border: thick solid red; */
     padding: 0;
     margin: 0;
     overflow: hidden;

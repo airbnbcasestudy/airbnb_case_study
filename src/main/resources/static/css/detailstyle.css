@@ -18,12 +18,15 @@ html body{
 .header {
     position: relative ;
     width: 100% ;
+    height: auto;
 
  }
 
  .header-content{
     width: 100% ;
-    height: auto;
+    height: 50px;
+    border: thin solid black;
+    margin-top: 0;
  }
 
 
@@ -90,10 +93,11 @@ html body{
     width: auto;
 }
 
+
 .content-detail{
     width: 100%;
     height: auto;
-    border: thin solid red;
+    /* border: thin solid red; */
     position: relative;
 }
 
@@ -101,7 +105,7 @@ html body{
     width: 55%;
     height: 100%;
     min-height: 400px;
-    border: thin solid black;
+    /* border: thin solid black; */
     position: relative;
 
 }

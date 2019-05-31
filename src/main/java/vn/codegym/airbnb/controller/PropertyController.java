@@ -35,6 +35,8 @@ public class PropertyController {
 
         return "/index";
     }
+
+
     @RequestMapping(value = "/forlease")
     public String forLeasePage(){
 
@@ -42,14 +44,12 @@ public class PropertyController {
     }
 
 
-
-
     @RequestMapping(value = "/rooms/detail/{id}", method = RequestMethod.GET)
     public String detailProperty(@PathVariable("id") int id, Model model){
         Properties properties = propertiesMapper.findById(id);
         List<PropertiesImg> propertiesImgList = propertiesImgMapper.findByPropertiesId(id);
         model.addAttribute("properties", properties);
-        model.addAttribute("propertiesImg", propertiesImgList);
+        model.addAttribute("propertiesImgs", propertiesImgList);
         return "rooms/detail";
     }
 

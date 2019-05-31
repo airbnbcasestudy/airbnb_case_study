@@ -83,5 +83,7 @@ public class ApplicationConfig implements WebMvcConfigurer, ApplicationContextAw
                 .addResourceLocations("classpath:/static/js/");
         registry.addResourceHandler("/resources/svg/**")
                 .addResourceLocations("classpath:/static/svg/");
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:upload/");
     }
 }
