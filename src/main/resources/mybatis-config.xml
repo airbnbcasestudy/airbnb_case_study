@@ -7,6 +7,8 @@
         <typeAlias alias="PropertiesImg" type="vn.codegym.airbnb.model.PropertiesImg"/>
         <typeAlias alias="User" type="vn.codegym.airbnb.model.User"/>
         <typeAlias alias="Booking" type="vn.codegym.airbnb.model.Booking"/>
+        <typeAlias alias="Reviews" type="vn.codegym.airbnb.model.Reviews"/>
+        <typeAlias alias="ReviewsDTO" type="vn.codegym.airbnb.dto.ReviewsDTO"/>
 
     </typeAliases>
 
@@ -28,5 +30,7 @@
         <mapper resource="xmlmapper/PropertiesImgMapper.xml" />
         <mapper resource="xmlmapper/UserMapper.xml" />
         <mapper resource="xmlmapper/BookingMapper.xml" />
+        <mapper resource="xmlmapper/ReviewsMapper.xml" />
+        <mapper resource="xmlmapper/BookingDetail.xml" />
     </mappers>
 </configuration>

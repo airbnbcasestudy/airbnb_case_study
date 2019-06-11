@@ -8,8 +8,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css"
         th:href="@{/resources/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="../../static/css/detailstyle.css" 
-        th:href="@{/resources/css/detailstyle.css}">
+    <link rel="stylesheet" href="../../static/css/detailstyle.css" th:href="@{/resources/css/detailstyle.css}">
     <link rel="stylesheet" href="../static/css/mystyle.css" th:href="@{/resources/css/mystyle.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -17,41 +16,34 @@
 
 <body>
     <section>
+        <div class="header-menu">
+            <button class="btn-logo">
+                <div class="logo-content">
+                    <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false"
+                        style="height: 3em; width: 3em; display: block; fill: currentcolor;">
+                        <path
+                            d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z">
+                        </path>
+                    </svg>
+                </div>
+            </button>
+
+            <nav class="header-right">
+                <button id="btn-signup" type="button" data-toggle="modal" data-target="#modal-signup">Sign
+                    Up</button>
+                <button id="btn-signin" type="button" data-toggle="modal" data-target="#modal-login">Sign In
+                    </buttons>
+                <button id="btn-user" type="button">User</buttons>
+                <button id="btn-logout" type="button">Logout</buttons>
+            </nav>
+        </div>
+        
         <div class="container-fluid containt">
             <div class="header">
-                <div class="header-content">
-                    <button class="btn-logo">
-                        <div class="logo-content">
-                            <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false"
-                                style="height: 3em; width: 3em; display: block; fill: currentcolor;">
-                                <path
-                                    d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z">
-                                </path>
-                            </svg>
-                        </div>
-                    </button>
-
-                    <nav class="header-right">
-                        <button id="btn-signup" type="button" data-toggle="modal" data-target="#modal-signup">Sign
-                            Up</button>
-                        <button id="btn-signin" type="button" data-toggle="modal" data-target="#modal-login">Sign In
-                            </buttons>
-                            <button id="btn-user" type="button"></buttons>
-                                <button id="btn-logout" type="button"></buttons>
-                    </nav>
-                    <div class="user-menu">
-                        <ul>
-                            <li id="for-lease">Houses for lease</li>
-                            <li></li>
-                            <li>Profile</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="carousel-image-view" class="carousel slide" 
-                    data-ride="carousel" data-interval="3000" style="margin-top: 50px">
+                <div id="carousel-image-view" class="carousel slide" data-ride="carousel" data-interval="3000">
                     <div class="carousel-inner">
-                        <div class="carousel-item" th:classappend="${iter.index} == 0 ? active : carousel-item" th:each="pr, iter: ${propertiesImgs}" >
+                        <div class="carousel-item" th:classappend="${iter.index} == 0 ? active : carousel-item"
+                            th:each="pr, iter: ${propertiesImgs}">
                             <img th:src="${pr.imagePath}">
                         </div>
                     </div>
@@ -98,7 +90,17 @@
                             comfortable homestay that bring the unique features as local experience at our place with
                             irresistible price.
                         </div>
-                        <button type="button" id="btn-read-more">Read more about>></button>
+                        <!-- <button type="button" id="btn-read-more">Read more about>></button> -->
+                    </div>
+
+                    <div class="reviewing">
+                        <h4>Reviewing</h4>
+                        <div id="reviewing-body" th:each="rev : ${reviewsList}">
+                            <div class="review-content">
+                                <h5 th:text=${rev.userName}></h5>
+                                <p th:text=${rev.content} style="font-size: 14px"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

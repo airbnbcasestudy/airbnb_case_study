@@ -1,0 +1,28 @@
+.rental-detail {
+    width: 100%;
+    height: auto;
+    border: thin solid #FF5A6F;
+    border-radius: 2%;
+    box-shadow: 5px 3px 5px #FF5A6F;
+    margin-top: 30px;
+}
+
+.btn-review {
+    float: right;
+    margin-top: 50px;
+    margin-right: 20px;
+}
+
+.btn-review button {
+    background-color: #FF5A6F;
+    color: aliceblue;
+    border: none;
+    width: 100px;
+    height: 35px;
+}
+
+.detail {
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+}

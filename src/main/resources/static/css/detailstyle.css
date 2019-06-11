@@ -10,7 +10,6 @@ html body{
 }
 
 .containt{
-    /* border: thick solid blue; */
     padding: 0;
     margin: 0;
 }
@@ -19,16 +18,13 @@ html body{
     position: relative ;
     width: 100% ;
     height: auto;
-
  }
 
- .header-content{
+ .header-menu {
     width: 100% ;
-    height: 50px;
-    border: thin solid black;
-    margin-top: 0;
+    height: 60px;
+    background-color: #FF5A5F;
  }
-
 
  .btn-logo{
     border: none;
@@ -45,7 +41,6 @@ html body{
 .header-right{
     position: absolute;
     right: 20px;
-    top: 15px;
 }
 
 .header-right button{
@@ -113,6 +108,7 @@ html body{
 .general-info{
     border-bottom: #FF5A5F thin solid;
     padding-bottom: 50px;
+    margin-top: 20px;
 }
 
 .general-info h3{
@@ -131,6 +127,8 @@ html body{
 .description{
     word-break: keep-all;
     text-align: left;
+    border-bottom: #FF5A6F solid thin;
+    margin-bottom: 10px;
 }
 
 .description h4{
@@ -202,3 +200,43 @@ html body{
 #btn-read-more:focus{
     outline: none;
 }
+
+.user-menu{
+    position: absolute;
+    width: auto;
+    height: auto;
+    left: 0;
+    display: none;
+  }
+  
+  .user-menu ul{
+    list-style-type: none;
+    padding: 5px;
+    color: #ffffff;
+  }
+  
+  .user-menu ul li:hover{
+    border-bottom: 2px solid #fdeaea;
+  }
+
+  .review-content {
+    width: 100%;
+    height: 60px;
+    border-radius: 2%;
+    border: thin solid #FF5A6F;
+    box-shadow: 5px 3px 5px #FF5A5F;
+    margin-bottom: 10px;
+  }
+
+  .reviewing h4 {
+    font-size: 18px;
+    color: #484848;
+    font-weight: bold;
+  }
+
+  .review-content h5{
+    font-size: 15px;
+    color: #484848;
+    font-weight: bold;
+  }
+  

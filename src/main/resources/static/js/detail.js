@@ -1,26 +1,45 @@
-let readMore = 1;
 
-$(document).ready(function(){
-    $('#btn-read-more').click(function(){
-        var content = document.getElementById('description-body').innerText;
-        console.log(content);
-        if(readMore === 1){
-            $('#description-body').text("");
-            $('#btn-read-more').text('Hide>>');
-            readMore = 2;
-        }
-        else{
-            $('#description-body').text("jalfsjlajflsjlfjlsajflsjdlfs");
-            $('#btn-read-more').text('Read more about>>');
-            readMore = 1;
-        }
-    });
-})
 
 $(document).ready(function(){
     var content = document.getElementById('description-body').innerText;
     $('#description-body').html(content);
 })
+
+document.addEventListener("DOMContentLoaded", function(){
+    var btnUser = document.getElementById('btn-user');
+    var menu = document.getElementsByClassName('user-menu');
+
+    btnUser.onmouseover = function(){
+        menu[0].style.display = "block";
+    }
+
+    btnUser.onmouseleave = function(){
+        menu[0].style.display = "none";
+    }
+    menu[0].onmouseover = function(){
+        menu[0].style.display = "block";
+    }
+
+    menu[0].onmouseleave = function(){
+        menu[0].style.display = "none";
+    }
+
+},false)
+
+$('#btn-logout').click(function () {
+    if (typeof (Storage) != 'undefined') {
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('id');
+    }
+    alert("Logout success!");
+
+    if (sessionStorage.getItem('email') === null) {
+        $('#btn-signup').show();
+        $('#btn-signin').show();
+        $('#btn-user').hide();
+        $('#btn-logout').hide();
+    }
+});
 
 $('#btn-booking').click(function(event){
     event.preventDefault();
@@ -42,7 +61,6 @@ $('#btn-booking').click(function(event){
             contentType: "application/json",
             url: "/booking",
             data: dataJson,
-            dataType: "JSON",
             cache: false,
             timeout: 1000,
             success: function(){
@@ -57,9 +75,4 @@ $('#btn-booking').click(function(event){
     else{
         $('#modal-login').modal('show');
     }
-
-    
-
-    
-
 });
