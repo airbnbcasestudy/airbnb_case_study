@@ -185,22 +185,6 @@ html body{
 }
 
 
-#btn-read-more{
-    margin-bottom: 30px;
-    border: none;
-    background: none;
-    color: #484848;
-    font-weight: bold;
-}
-
-#btn-read-more:hover{
-    border-bottom: solid 2px #484848;
-}
-
-#btn-read-more:focus{
-    outline: none;
-}
-
 .user-menu{
     position: absolute;
     width: auto;

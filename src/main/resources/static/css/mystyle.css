@@ -212,3 +212,21 @@ html body{
   padding-top: 30px;
   margin: 0;
 }
+
+.user-menu{
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 0;
+  display: none;
+}
+
+.user-menu ul{
+  list-style-type: none;
+  padding: 5px;
+  color: #ffffff;
+}
+
+.user-menu ul li:hover{
+  border-bottom: 2px solid #fdeaea;
+}

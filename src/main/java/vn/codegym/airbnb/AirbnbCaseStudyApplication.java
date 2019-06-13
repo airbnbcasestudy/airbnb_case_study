@@ -12,9 +12,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import vn.codegym.airbnb.controller.PropertyController;
 
 @SpringBootApplication
-@ComponentScan({ "vn.codegym.airbnb" })
+@ComponentScan(value = { "vn.codegym.airbnb" }, basePackageClasses = PropertyController.class)
 @MapperScan("vn.codegym.airbnb.mapper")
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class })

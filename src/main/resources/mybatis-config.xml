@@ -9,6 +9,7 @@
         <typeAlias alias="Booking" type="vn.codegym.airbnb.model.Booking"/>
         <typeAlias alias="Reviews" type="vn.codegym.airbnb.model.Reviews"/>
         <typeAlias alias="ReviewsDTO" type="vn.codegym.airbnb.dto.ReviewsDTO"/>
+        <typeAlias alias="ReviewsDTO" type="vn.codegym.airbnb.dto.UserSignUp"/>
 
     </typeAliases>
 

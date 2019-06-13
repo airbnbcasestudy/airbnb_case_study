@@ -13,6 +13,10 @@
         select u.* from users u where u.email = #{email};
     </select>
 
+    <insert id="insert" parameterType="vn.codegym.airbnb.dto.UserSignUp">
+    insert into users(email, password, first_name, last_name) values (#{email}, #{password}, #{firstName}, #{lastName});
+    </insert>
+
     <resultMap id = "result" type = "vn.codegym.airbnb.model.User">
         <result property = "id" column = "id"/>
         <result property = "firstName" column = "first_name"/>

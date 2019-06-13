@@ -10,10 +10,7 @@ import vn.codegym.airbnb.dto.PropertyImageDTO;
 import vn.codegym.airbnb.dto.ReviewsDTO;
 import vn.codegym.airbnb.dto.UserDTO;
 import vn.codegym.airbnb.form.PropertiesForm;
-import vn.codegym.airbnb.mapper.PropertiesImgMapper;
-import vn.codegym.airbnb.mapper.PropertiesMapper;
-import vn.codegym.airbnb.mapper.PropertyImageDTOMapper;
-import vn.codegym.airbnb.mapper.ReviewsMapper;
+import vn.codegym.airbnb.mapper.*;
 import vn.codegym.airbnb.model.Properties;
 import vn.codegym.airbnb.model.PropertiesImg;
 
@@ -31,6 +28,8 @@ public class PropertyController {
     private PropertiesMapper propertiesMapper;
     @Autowired
     private ReviewsMapper reviewsMapper;
+    @Autowired
+    private BookingDetail bookingDetail;
 
 
     @RequestMapping(value ="/")
@@ -42,10 +41,10 @@ public class PropertyController {
     }
 
 
-    @RequestMapping(value = "/forlease")
+    @RequestMapping(value = "/forlease", method = RequestMethod.GET)
     public String forLeasePage(){
 
-        return "/rooms/create";
+        return "rooms/create";
     }
 
 
@@ -61,9 +60,12 @@ public class PropertyController {
         return "rooms/detail";
     }
 
-    @RequestMapping(value = "/booking", method = RequestMethod.GET)
-    public String bookingDetail(Model model) {
+    @RequestMapping(value = "/booking/{id}", method = RequestMethod.GET)
+    public String bookingDetail(@PathVariable("id") int id,  Model model) {
+        List<BookingDetail> bookingDetailList = bookingDetail.selectAllBooking(id);
+        model.addAttribute("bookingDetailList", bookingDetailList);
 
+        return "rooms/booking";
     }
 
 

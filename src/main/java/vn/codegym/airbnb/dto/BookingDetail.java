@@ -3,8 +3,7 @@ package vn.codegym.airbnb.dto;
 import java.time.LocalDate;
 
 public class BookingDetail {
-    private int userId;
-    private int propertyId;
+
     private int badRooms;
     private int bathRooms;
     private LocalDate checkIn;
@@ -13,9 +12,7 @@ public class BookingDetail {
     private double total;
     private String content;
 
-    public BookingDetail(int userId, int propertyId, int badRooms, int bathRooms, LocalDate checkIn, LocalDate checkOut, String name, double total, String content) {
-        this.userId = userId;
-        this.propertyId = propertyId;
+    public BookingDetail( int badRooms, int bathRooms, LocalDate checkIn, LocalDate checkOut, String name, double total, String content) {
         this.badRooms = badRooms;
         this.bathRooms = bathRooms;
         this.checkIn = checkIn;
@@ -23,22 +20,6 @@ public class BookingDetail {
         this.name = name;
         this.total = total;
         this.content = content;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(int propertyId) {
-        this.propertyId = propertyId;
     }
 
     public int getBadRooms() {

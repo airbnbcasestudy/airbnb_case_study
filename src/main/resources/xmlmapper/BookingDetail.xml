@@ -4,11 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vn.codegym.airbnb.mapper.BookingMapper">
 
-    <select id="selectAllById" resultMap="reviewMap" parameterType="int">
-        select rv.*, us.first_name
-        from reviews rv
-          join users us on rv.user_id = us.id
-        where property_id = #{id};
+    <select id="selectAllBooking" resultMap="reviewMap" parameterType="int">
+        select pr.name, pr.badrooms, pr.bathrooms, bk.check_in_date, bk.check_out_date,
+          bk.amount_path, rv.content
+        from booking bk
+        join properties pr on bk.property_id = pr.id
+        join reviews rv on bk.property_id = rv.property_id
+        where bk.user_id = #{id} and rv.user_id = #{id};
     </select>
 
     <!--<insert id="insert" parameterType="PropertiesImg">-->
@@ -16,10 +18,13 @@
     <!--</insert>-->
 
 
-    <resultMap id="reviewMap" type="vn.codegym.airbnb.dto.ReviewsDTO">
-        <result property="id" column="id"/>
-        <result property="propertyId" column="property_id"/>
-        <result property="userName" column="first_name"/>
+    <resultMap id="reviewMap" type="vn.codegym.airbnb.dto.BookingDetail">
+        <result property="badRooms" column="badrooms"/>
+        <result property="bathRooms" column="bathrooms"/>
+        <result property="checkIn" column="check_in_date"/>
+        <result property="checkOut" column="check_out_date"/>
+        <result property="name" column="name"/>
+        <result property="total" column="amount_path"/>
         <result property="content" column="content"/>
     </resultMap>
 

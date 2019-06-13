@@ -81,41 +81,6 @@ $('#btn-login-modal').click(function () {
             }
         });
     }
-}); 
-
-$('#btn-signup-modal').click(function (event){
-    event.preventDefault();
-
-
-    var userSignup = {
-        email: $('#email').val(),
-        password: $('#password').val(),
-        firstName: $('#firstName').val(),
-        lastName: $('#lastName').val()
-    }
-
-    var dataJson = JSON.stringify(userSignup);
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "/signup",
-        data: dataJson,
-        // dataType: "json",
-        cache: false,
-        timeout: 1000,
-        success: function (response) {
-            $('#modal-signup').modal('hide');
-            alert('Sign Up Success!');
-            $('#modal-login').modal('show');
-            
-        },
-        error: function (e) {
-            console.log(e);
-        }
-    });
-
-
 });
 
 
@@ -179,12 +144,5 @@ $('#btn-addhouse-modal').click(function (event) {
         error: function (e) {
             console.log(e);
         }
-    });
-});
-
-$('#for-lease').click(function(){
-    window.location.href = ('/forlease');
-    $(document).ready(function(){
-        loadProperties(8);
     });
 });

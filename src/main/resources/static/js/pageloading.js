@@ -12,7 +12,7 @@ function loadProperties(limit){
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: window.location + "properties",
+            url: "/properties",
             data: {
                 limit: limit
             },

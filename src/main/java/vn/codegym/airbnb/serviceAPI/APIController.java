@@ -12,6 +12,7 @@ import vn.codegym.airbnb.controller.UploadForm;
 import vn.codegym.airbnb.dto.BookingDTO;
 import vn.codegym.airbnb.dto.PropertyImageDTO;
 import vn.codegym.airbnb.dto.UserDTO;
+import vn.codegym.airbnb.dto.UserSignUp;
 import vn.codegym.airbnb.form.PropertiesForm;
 import vn.codegym.airbnb.mapper.*;
 import vn.codegym.airbnb.model.*;
@@ -66,6 +67,12 @@ public class APIController {
         Booking booking = new Booking(bk.getPropertiesId(), bk.getUserId(), bk.getCheckIn(),
                 bk.getCheckOut(), cancelDate.plusDays(-1), LocalDate.now(), days*bk.getAmountPaid());
         bookingMapper.insert(booking);
+    }
+
+
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public void signUp(@RequestBody UserSignUp us){
+        userMapper.insert(us);
     }
 
 
